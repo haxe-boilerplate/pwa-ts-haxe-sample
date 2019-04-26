@@ -30,9 +30,12 @@ from each other, as needed.
 
 Tested with Haxe 4.0RC2.
 
-1) haxe build.hxml
-2) yarn
-3) yarn dev
+1) Install Lix https://github.com/lix-pm/lix.client#downloading-all-dependencies;
+1) Install Haxe 4.0RC with Lix, if necessary: `lix install haxe 4.0.0-rc.2`;
+2) Download haxelib dependencies with Lix: `lix download`;
+1) haxe build.hxml;
+2) yarn;
+3) yarn dev.
 
 Then:
 1) Search for the output in the shell: `[SERVER] src/hx/server/SuperServerComponent.hx:7: Hello from Haxe running on nodejs from a js file compiled by tsc!`
