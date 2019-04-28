@@ -13,4 +13,5 @@ typedef ProcessedClass = {
 	dependencies:Array<Dependency>,
 	externType:ExternType,
 	expose:Option<String>,
+	generateTSExtern: Bool
 }

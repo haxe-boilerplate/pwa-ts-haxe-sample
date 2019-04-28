@@ -26,10 +26,10 @@ class TSExternClassGenerator implements IClassGenerator {
 					return sc.id.asAccessName(sc.externType);
 			}		
 		
-		if((c.constructor == null || c.constructor.code == null) && c.fields.length == 0)
-			return None;
-		if(c.type.isExtern)
-			return None;
+		if((c.constructor == null || c.constructor.code == null) && c.fields.length == 0) return None;
+		if(c.type.isExtern) return None;
+		// Only generate the TS type definition if explicitely marked
+		if(!c.generateTSExtern) return None;
 		
 		var filepath = c.id.asFilePath() + '.d.ts';
 		var name = c.type.name;

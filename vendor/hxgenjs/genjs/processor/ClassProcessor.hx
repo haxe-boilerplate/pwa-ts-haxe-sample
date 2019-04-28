@@ -125,6 +125,7 @@ class ClassProcessor {
 			
 			
 			inline function m(name) return cls.meta.extract(name);
+
 			var externType =
 				if(!cls.isExtern) None
 				else switch [m(':jsRequire'), m(':native'), m(':coreApi')] {
@@ -148,7 +149,9 @@ class ClassProcessor {
 				if(meta.length == 0) Option.None
 				else if(meta[0].params.length == 0) Some(id)
 				else Some(meta[0].params[0].getValue());
-			
+
+			var tsextern = 
+				if (m(':tsextern').length == 0) false else true;
 			
 			if(ref == null) throw 'Type reference cannot be null when a class is processed for the first time';
 			cache[id] = {
@@ -161,6 +164,7 @@ class ClassProcessor {
 				dependencies: stubs.map(DStub).concat(dependencies),
 				externType: externType,
 				expose: expose,
+				generateTSExtern: tsextern
 			}
 		}
 		return cache[id];
