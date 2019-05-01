@@ -41,17 +41,46 @@ class ClassProcessor {
 
 	static function prefix(expr: Null<TypedExpr>) {
  	if (expr != null) {
-		switch(expr.t){
-			case TFun(args, ret):
-				for(a in args) {
-					if (reservedKeywords.has(a.name)) {
-						a.name = '$' + a.name + 'PUTOSTODOS';
+		var n = inline (newName) -> '$' + newName;
+		switch(expr.expr) {
+			case TFunction(f):
+				for(a in f.args) {
+					if (reservedKeywords.has(a.v.name)) {
+						Reflect.setField(a.v,'name',n(a.v.name));
 					}
 				}
-			default: //do nothing
+				switch(f.expr.expr) {
+						case TBlock(el): {
+							for (e in el) {
+								switch(e.expr) {
+									case TCall(e, el):
+									 for (i in el) {
+										 switch(i.expr) {
+											 case TLocal(v): 
+												if (reservedKeywords.has(v.name)) {
+													Reflect.setField(v,'name', n(v.name));
+												}
+												default:
+									 }
+								}
+								default: 
+							}
+						}
+					}
+					default:
+				}
+		default: //do nothing
+		}
+		switch(expr.t) {
+			case TFun(args, ret): 
+				for(a in args) {
+					if (reservedKeywords.has(a.name)) {
+						Reflect.setField(a, 'name', n(v.name));
+					}
+				}
+			default:
 		}
 		}
-
 		return expr;
 	}
 	
@@ -105,10 +134,11 @@ class ClassProcessor {
 				var code = switch(_f.expr()) {
 					case null: null;
 					case e: 
-					  var te = Context.typeExpr(Context.storeTypedExpr(e));
-						te = prefix(te);
 						
-						var code = api.generateValue(te);
+					  var te = Context.typeExpr(Context.storeTypedExpr(e));
+						var _te = prefix(te);
+						var code = api.generateStatement (_te);
+
 
 
 						checkStubDependency('iterator', code);
