@@ -38,6 +38,9 @@ class EnumProcessor {
 					case [_, _, [v]]: CoreApi;
 					default: Global;
 				}
+
+			var tsextern = 
+				if (m(':tsextern').length == 0) false else true;
 			
 			cache[id] = {
 				id: id,
@@ -46,6 +49,7 @@ class EnumProcessor {
 				externType: externType,
 				constructors: [for(ctor in enm.constructs) EnumConstructorProcessor.process(api, ctor)],
 				dependencies: [DStub('estr'), DStub('hxClasses')],
+				generateTSExtern: tsextern
 			}
 		}
 		return cache[id];

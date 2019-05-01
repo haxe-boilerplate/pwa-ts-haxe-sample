@@ -1,5 +1,8 @@
 package genjs.generator;
 
+import haxe.macro.Type.TypeParameter;
+using Lambda;
+
 import haxe.ds.Option;
 import haxe.macro.JSGenApi;
 import genjs.processor.*;

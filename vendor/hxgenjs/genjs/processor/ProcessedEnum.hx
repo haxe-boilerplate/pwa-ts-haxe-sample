@@ -9,4 +9,5 @@ typedef ProcessedEnum = {
 	constructors:Array<ProcessedEnumConstructor>,
 	dependencies:Array<Dependency>,
 	externType:ExternType,
+	generateTSExtern: Bool
 }

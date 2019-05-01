@@ -34,18 +34,20 @@ class MainProcessor {
 			if(stubs.indexOf(name) != -1) return;
 			if(code.indexOf('$$$name') != -1) stubs.push(name);
 		}
+
 		
 		var code = switch api.main {
 			case null: null;
 			case main:
 				var code = api.generateStatement(main);
+				var r = ~/finally/i;
 				checkStubDependency('iterator', code);
 				checkStubDependency('getIterator', code);
 				checkStubDependency('bind', code);
 				checkStubDependency('extend', code);
 				code;
 		}
-		
+
 		for(type in allTypes) {
 			switch type {
 				case PClass(cls):

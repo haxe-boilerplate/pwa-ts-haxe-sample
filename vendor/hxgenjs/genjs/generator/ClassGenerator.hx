@@ -139,6 +139,7 @@ class ClassGenerator implements IClassGenerator {
 			}		
 			var fields = '{\n' + fields.join(',\n').indent(1) + '\n}';
 			// Statics
+
 			var staticFunctions = [];
 			var staticVariables = [];
 			for(field in c.fields.filter(function(f) return f.isStatic)) {

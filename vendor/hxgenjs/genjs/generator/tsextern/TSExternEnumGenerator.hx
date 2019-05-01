@@ -15,7 +15,9 @@ using genjs.template.CodeTools;
 class TSExternEnumGenerator implements IEnumGenerator {
 	public function new() {}
 	public function generate(api:JSGenApi, e:ProcessedEnum) {
-		
+		// Only generate the TS type definition if explicitely marked
+		if(!e.generateTSExtern) return None;
+
 		var filepath = e.id.asFilePath() + '.d.ts';
 		var name = e.type.name;
 		

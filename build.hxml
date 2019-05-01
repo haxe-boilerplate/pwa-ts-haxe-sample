@@ -1,5 +1,8 @@
 -cp vendor/hxgenjs
 -cp src/hx
+-lib hxnodejs
+-lib tink_web
+-lib tink_http
 # Any way to use hxgenjs without a dummy main.js file (which is now empty in ./src/ts :( )
 -js src/ts/main.js
 -D tsextern

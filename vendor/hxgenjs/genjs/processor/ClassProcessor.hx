@@ -6,6 +6,9 @@ import haxe.macro.Type;
 import haxe.macro.JSGenApi;
 import genjs.processor.Dependency;
 import genjs.processor.ExternType;
+import haxe.macro.Context;
+
+using haxe.macro.ExprTools;
 
 using StringTools;
 #if tink_macro
@@ -15,8 +18,42 @@ using genjs._util.MacroUtil;
 using haxe.macro.ExprTools;
 #end
 
+using Lambda;
+
 class ClassProcessor {
 	static var cache = new Map();
+	static var reservedKeywords = ['finally'];
+
+ // Later convert to a more funcitonal approach instead of modifying values in existing structures, recreate it and reassign
+ static function prefixParamsWithReservedNames(f: ClassField) {
+		switch(f.type) {
+			case TFun(args, ret): 
+				for(a in args) {
+					if (reservedKeywords.has(a.name)) {
+						a.name = '$' + a.name + 'PUTOSTODOS';
+					}
+				}
+
+			case _: //do nothing
+		}
+		return f;
+	}
+
+	static function prefix(expr: Null<TypedExpr>) {
+ 	if (expr != null) {
+		switch(expr.t){
+			case TFun(args, ret):
+				for(a in args) {
+					if (reservedKeywords.has(a.name)) {
+						a.name = '$' + a.name + 'PUTOSTODOS';
+					}
+				}
+			default: //do nothing
+		}
+		}
+
+		return expr;
+	}
 	
 	public static function process(api:JSGenApi, id:String, cls:ClassType, ?ref:Type):ProcessedClass {
 		if(!cache.exists(id)) {
@@ -64,10 +101,16 @@ class ClassProcessor {
 			});
 			
 			function constructField(f:ClassField, isStatic:Bool) {
-				var code = switch f.expr() {
+				var _f =  prefixParamsWithReservedNames(f);
+				var code = switch(_f.expr()) {
 					case null: null;
 					case e: 
-						var code = api.generateValue(e);
+					  var te = Context.typeExpr(Context.storeTypedExpr(e));
+						te = prefix(te);
+						
+						var code = api.generateValue(te);
+
+
 						checkStubDependency('iterator', code);
 						checkStubDependency('getIterator', code);
 						checkStubDependency('bind', code);
@@ -75,14 +118,14 @@ class ClassProcessor {
 						code;
 				}
 				
-				var meta = f.meta.extract(':expose');
+				var meta = _f.meta.extract(':expose');
 				var expose =
 					if(!isStatic || meta.length == 0) Option.None
 					else if(meta[0].params.length == 0) Some('$id.${f.name}');
 					else Some(meta[0].params[0].getValue());
 				
 				return {
-					field: f,
+					field: _f,
 					isStatic: isStatic,
 					isFunction: f.kind.match(FMethod(_)),
 					expose: expose,
@@ -92,6 +135,7 @@ class ClassProcessor {
 			}
 			
 			var fields = cls.fields.get().map(constructField.bind(_, false));
+			
 			var statics = cls.statics.get().map(constructField.bind(_, true));
 			var constructor = switch cls.constructor {
 				case null if(cls.isInterface):
