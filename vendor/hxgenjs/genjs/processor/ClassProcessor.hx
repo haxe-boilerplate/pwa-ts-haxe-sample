@@ -41,7 +41,7 @@ class ClassProcessor {
 
 	static function prefix(expr: Null<TypedExpr>) {
  	if (expr != null) {
-		var n = inline (newName) -> '$' + newName;
+		var n = (newName) -> '$' + newName;
 		switch(expr.expr) {
 			case TFunction(f):
 				for(a in f.args) {
@@ -75,7 +75,7 @@ class ClassProcessor {
 			case TFun(args, ret): 
 				for(a in args) {
 					if (reservedKeywords.has(a.name)) {
-						Reflect.setField(a, 'name', n(v.name));
+						Reflect.setField(a, 'name', n(a.name));
 					}
 				}
 			default:
@@ -130,14 +130,18 @@ class ClassProcessor {
 			});
 			
 			function constructField(f:ClassField, isStatic:Bool) {
-				var _f =  prefixParamsWithReservedNames(f);
+			  //var _f =  prefixParamsWithReservedNames(f);
+				var _f = f;
 				var code = switch(_f.expr()) {
 					case null: null;
 					case e: 
-						
-					  var te = Context.typeExpr(Context.storeTypedExpr(e));
-						var _te = prefix(te);
-						var code = api.generateStatement (_te);
+					  //var te = Context.typeExpr(Context.storeTypedExpr(prefix(e)));
+						var code = api.generateValue(e);
+
+						var r = ~/finally/g;
+						var rexc = ~/\$finally\s{/g;
+						if (r.match(code)) code = code.replace('finally', "$finally");
+						if (rexc.match(code)) code = rexc.replace(code, 'finally {');
 
 
 
