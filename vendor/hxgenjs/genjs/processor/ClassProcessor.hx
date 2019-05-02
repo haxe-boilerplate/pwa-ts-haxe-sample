@@ -144,7 +144,6 @@ class ClassProcessor {
 						if (rexc.match(code)) code = rexc.replace(code, 'finally {');
 
 
-
 						checkStubDependency('iterator', code);
 						checkStubDependency('getIterator', code);
 						checkStubDependency('bind', code);

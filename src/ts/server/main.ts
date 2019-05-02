@@ -15,7 +15,7 @@ import SuperServerComponent from './SuperServerComponent';
 const superServerComponent = new SuperServerComponent();
 superServerComponent.saySomething('Hello from Haxe running on nodejs from a js file compiled by tsc!');
 
-console.log(`The App version is ${getVersion()}`);
+console.log(`The Apps version is ${getVersion()} nice!`);
 
 const app = express();
 app.set('view engine', 'ejs');

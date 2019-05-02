@@ -9,7 +9,7 @@ import { About } from './components/About';
 import { getAName } from './utils/usernames';
 import { connect } from 'react-redux';
 
-// Pages
+// Pagess
 import { Header } from './components/Header';
 import { Home } from './components/Home';
 import { UsersList } from './components/UsersList';

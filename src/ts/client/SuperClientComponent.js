@@ -20,7 +20,7 @@ SuperClientComponent.__name__ = ["client","SuperClientComponent"];
 SuperClientComponent.prototype = {
 	saySomething: function($finally) {
 		console.log("src/hx/client/SuperClientComponent.hx:7:",$finally);
-		console.log("src/hx/client/SuperClientComponent.hx:8:","foo");
+		console.log("src/hx/client/SuperClientComponent.hx:8:","fooaisasdkjasndkjsnd");
 	}
 };
 SuperClientComponent.prototype.__class__ = SuperClientComponent.prototype.constructor = $hxClasses["client.SuperClientComponent"] = SuperClientComponent;
