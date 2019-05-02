@@ -66,7 +66,7 @@ class App extends Component<IProps> {
     return (
       <Grid container justify="center">
         <Grid style={{ textAlign: 'center' }} item xs={12}>
-          <h1>{pot}</h1>
+          <h1>{pot}FOO</h1>
         </Grid>
         <Grid style={{ textAlign: 'right', padding: '10px' }} item xs={6}>
           <Button onClick={this.pitchIn} variant="raised" color="primary">

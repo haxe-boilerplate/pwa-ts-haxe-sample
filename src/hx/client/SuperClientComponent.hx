@@ -5,6 +5,5 @@ class SuperClientComponent {
 
   function saySomething(finally: String) {
     trace(finally);
-    trace('LOOL');
   }
 }

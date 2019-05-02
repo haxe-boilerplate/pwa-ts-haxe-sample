@@ -20,7 +20,6 @@ SuperServerComponent.__name__ = ["server","SuperServerComponent"];
 SuperServerComponent.prototype = {
 	saySomething: function(phrase) {
 		console.log("src/hx/server/SuperServerComponent.hx:7:",phrase);
-		console.log("src/hx/server/SuperServerComponent.hx:8:","foo");
 	}
 };
 SuperServerComponent.prototype.__class__ = SuperServerComponent.prototype.constructor = $hxClasses["server.SuperServerComponent"] = SuperServerComponent;

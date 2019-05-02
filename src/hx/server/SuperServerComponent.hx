@@ -5,6 +5,5 @@ class SuperServerComponent {
 
   function saySomething(phrase: String) {
     trace(phrase);
-    trace('foo');
   }
 }
