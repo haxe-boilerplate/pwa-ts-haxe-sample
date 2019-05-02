@@ -16,7 +16,7 @@
     "dev-client": "webpack-dev-server -w --debug --output-path-info",
     "dev-client:hot": "webpack-dev-server -w --hot",
     "build-server": "tsc -p ./src/ts/server",
-		"dev-server": "concurrently \"nodemon -e hx --watch vendor --watch src/hx --exec \\\"haxe build.hxml\\\"\" \"nodemon -e ts,js --watch src/ts/server --exec \\\"tsc --p ./src/ts/server/tsconfig.json\\\"\"",
+		"dev-server": "concurrently \"nodemon -e hx --watch vendor --watch src/hx --exec \\\"haxe build.hxml\\\"\" \"nodemon -e ts,js --watch src/ts/server --exec \\\"tsc --p ./src/ts/server/tsconfig.json && node index.js\\\"\"",
     "dev": "npm run clean && concurrently --prefix \"[{name}]\" --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgGreen.bold\" \"npm run dev-server\" \"npm run dev-client\"",
     "dev:hot": "npm run clean && concurrently --prefix \"[{name}]\" --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgGreen.bold\" \"npm run dev-server\" \"npm run dev-client:hot\"",
     "build": "npm run clean && concurrently --prefix \"[{name}]\" --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgGreen.bold\" \"npm run build-server\" \"npm run build-client\""
