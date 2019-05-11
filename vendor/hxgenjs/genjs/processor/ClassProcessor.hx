@@ -138,11 +138,14 @@ class ClassProcessor {
 					  //var te = Context.typeExpr(Context.storeTypedExpr(prefix(e)));
 						var code = api.generateValue(e);
 
+						/*
+						See: https://github.com/HaxeFoundation/haxe/issues/8231
+						Not needed for now because: https://github.com/haxetink/tink_core/commit/fe4873607ca179ef1e419a9099c1796706f11bc2
 						var r = ~/finally/g;
 						var rexc = ~/\$finally\s{/g;
 						if (r.match(code)) code = code.replace('finally', "$finally");
 						if (rexc.match(code)) code = rexc.replace(code, 'finally {');
-
+						*/
 
 						checkStubDependency('iterator', code);
 						checkStubDependency('getIterator', code);
