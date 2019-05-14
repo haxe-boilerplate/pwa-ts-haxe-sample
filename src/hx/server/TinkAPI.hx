@@ -20,23 +20,8 @@ class Root {
 }
 
 class TinkAPI {
-    static function main(req: js.node.http.IncomingMessage, res:js.node.http.ServerResponse, next) {
-        var container = new NodeContainer(8080);
-        var request = new IncomingRequest(
-            req.socket.remoteAddress, 
-            IncomingRequestHeader.fromIncomingMessage(req),
-            Plain(Source.ofNodeStream('Incoming HTTP message from ${req.socket.remoteAddress}', req)));
-
+    static var main = {
         var router = new Router<Root>(new Root());
-            return router.route(Context.ofRequest(request)).handle(function(out) {
-                switch (out) {
-                    case Success(data):
-                        res.writeHead(data.header.statusCode, data.header.reason, cast [for (h in data.header) [(h.name : String), h.value]]);//TODO: readable status code
-                        data.body.pipeTo(Sink.ofNodeStream('Outgoing HTTP response to ${req.socket.remoteAddress}', res)).handle(function (x) {
-                           res.end();
-                        });
-                    case Failure(data):
-                };
-            });
-}
+        NodeContainer.toNodeHandler(req -> router.route(Context.ofRequest(req)).recover(OutgoingResponse.reportError));
+    }
 }
