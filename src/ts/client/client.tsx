@@ -14,11 +14,14 @@ superClientComponent.saySomething('Hello from Haxe packaged by webpack and runni
 superClientComponent.thisIsNice = {bar: 'foo', bow: 2};
 console.log(superClientComponent.thisIsNice);
 
+// Test consume the tink api through express
+import Client from './Client';
+
+console.log(Client.call());
+
 const store = createStore(reducer);
 
 export const socket = configureSocket(store.dispatch);
-
-//TODO check registration of serviceWorker from the webpack plugin
 
 ReactDOM.render(
   <Provider store={store}>

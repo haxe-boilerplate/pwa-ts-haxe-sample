@@ -51,6 +51,22 @@ Reflect.fields = function(o) {
 	}
 	return a;
 }
+Reflect.compare = function(a,b) {
+	if(a == b) {
+		return 0;
+	} else if(a > b) {
+		return 1;
+	} else {
+		return -1;
+	}
+}
+Reflect.isEnumValue = function(v) {
+	if(v != null) {
+		return v.__enum__ != null;
+	} else {
+		return false;
+	}
+}
 Reflect.copy = function(o) {
 	var o2 = { };
 	var _g = 0;

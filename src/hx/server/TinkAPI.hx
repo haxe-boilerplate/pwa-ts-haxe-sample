@@ -9,14 +9,31 @@ import tink.io.Source;
 import tink.io.Sink;
 import tink.http.Response;
 
-@:tsextern
+import ApiResult.Result;
+
+// Simple API example, not a proxy
+
 class Root {
     public function new() {}
 
     @:get('/')
-    @:get('/doood/$name')
-    public function hello(name = 'World')
-        return 'Hello, $name!';
+    @:get('/print/$name')
+    public function hello(name = 'World'):Result
+        return  {
+            slideshow: {
+                title: 'Look!',
+                author: 'Mr. Bean',
+                date: '2018-08-08',
+                slides: [
+                    {
+                        title: 'Woohoo',
+                        type: 'silly',
+                        items: ['item_foo', 'item_bar']
+                    }
+                ]
+            }
+
+        }
 }
 
 class TinkAPI {

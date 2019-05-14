@@ -11,9 +11,6 @@ import tink_core__$Lazy_LazyConst from "./../tink/core/_Lazy/LazyConst";
 import { AnyARecord } from "dns";
 
 
-
-
-
 declare namespace server {
 export class TinkAPI {
 	static main(req, res): any;
