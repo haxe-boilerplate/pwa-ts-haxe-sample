@@ -25,13 +25,13 @@ app.set('view engine', 'ejs');
 
 app.use('/assets', express.static(path.join(__dirname, '..', '..', '..', 'assets')));
 
+app.use(staticsRouter());
+app.use(apiRouter());
 app.use('/tink_api', (req, res, next) => {
   t.main(req, res);
 });
-
-app.use(apiRouter());
-app.use(staticsRouter());
 app.use(pagesRouter());
+
 const httpServer = http.createServer(app);
 
 httpServer.listen(config.SERVER_PORT, () => {
