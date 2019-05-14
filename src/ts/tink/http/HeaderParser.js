@@ -86,10 +86,11 @@ HeaderParser.prototype = $extend((tink_io_BytewiseParser().default).prototype, {
 			var _g = this.makeHeader(line,this.fields = []);
 			switch(_g._hx_index) {
 			case 0:
-				if(_g.data == null) {
+				var _g1 = _g.data;
+				if(_g1 == null) {
 					return (tink_io_ParseStep().default).Done(this.header = null);
 				} else {
-					var v = _g.data;
+					var v = _g1;
 					this.header = v;
 					return (tink_io_ParseStep().default).Progressed;
 				}

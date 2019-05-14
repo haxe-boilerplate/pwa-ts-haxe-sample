@@ -100,10 +100,12 @@ Header.prototype = {
 					return true;
 				}
 				var _g2 = entry.value.split("/");
-				if(_g2.length == 2 && _g2[1] == "*") {
-					var p = _g2[0];
-					if(prefix == p) {
-						return true;
+				if(_g2.length == 2) {
+					if(_g2[1] == "*") {
+						var p = _g2[0];
+						if(prefix == p) {
+							return true;
+						}
 					}
 				}
 			}

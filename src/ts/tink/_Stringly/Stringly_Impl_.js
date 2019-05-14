@@ -113,6 +113,7 @@ Stringly_Impl_.parseDate = function(this1) {
 		var f = _g.data;
 		return (tink_core_Outcome().default).Success(new Date(f));
 	case 1:
+		var _g2 = _g.failure;
 		if(!Stringly_Impl_.SUPPORTED_DATE_REGEX.match(this1)) {
 			return (tink_core_Outcome().default).Failure(new (tink_core_TypedError().default)(422,"" + this1 + " is not a valid date",{ fileName : "tink/Stringly.hx", lineNumber : 92, className : "tink._Stringly.Stringly_Impl_", methodName : "parseDate"}));
 		}

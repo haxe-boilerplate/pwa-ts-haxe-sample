@@ -121,7 +121,7 @@ Future_Impl_.ofJsPromise = function(promise) {
 		promise.then(function(a) {
 			cb((tink_core_Outcome().default).Success(a));
 		}).catch(function(e) {
-			var tmp = (tink_core_Outcome().default).Failure((tink_core_TypedError().default).withData(null,e.message,e,{ fileName : "tink/core/Future.hx", lineNumber : 78, className : "tink.core._Future.Future_Impl_", methodName : "ofJsPromise"}));
+			var tmp = (tink_core_Outcome().default).Failure((tink_core_TypedError().default).withData(null,e.message,e,{ fileName : "tink/core/Future.hx", lineNumber : 83, className : "tink.core._Future.Future_Impl_", methodName : "ofJsPromise"}));
 			cb(tmp);
 		});
 	});
@@ -255,7 +255,7 @@ Future_Impl_.delay = function(ms,value) {
 }
 Future_Impl_.NULL = new (tink_core__$Future_SyncFuture().default)(new (tink_core__$Lazy_LazyConst().default)(null))
 Future_Impl_.NOISE = new (tink_core__$Future_SyncFuture().default)(new (tink_core__$Lazy_LazyConst().default)((tink_core_Noise().default).Noise))
-Future_Impl_.NEVER = new (tink_core__$Future_SyncFuture().default)(new (tink_core__$Lazy_LazyConst().default)((tink_core__$Future_NeverFuture().default).inst))
+Future_Impl_.NEVER = (tink_core__$Future_NeverFuture().default).inst
 
 // Export
 

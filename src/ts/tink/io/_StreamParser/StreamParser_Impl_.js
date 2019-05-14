@@ -167,6 +167,7 @@ StreamParser_Impl_.parseStream = function(s,p) {
 					step(next1);
 					break;
 				case 1:
+					var _g1 = o.rest;
 					var e = o.e;
 					step((tink_streams_Step().default).Fail(e));
 					break;

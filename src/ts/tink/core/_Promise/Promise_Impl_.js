@@ -95,6 +95,7 @@ Promise_Impl_.mapError = function(this1,f) {
 	var ret = this1.map(function(o) {
 		switch(o._hx_index) {
 		case 0:
+			var _g = o.data;
 			return o;
 		case 1:
 			var e = o.failure;
@@ -163,7 +164,7 @@ Promise_Impl_.and = function(a,b) {
 		return new (tink_core__$Future_SyncFuture().default)(new (tink_core__$Lazy_LazyConst().default)((tink_core_Outcome().default).Success(this1)));
 	});
 }
-Promise_Impl_.iterate = function(promises,yield,$finally,lazy) {
+Promise_Impl_.iterate = function(promises,$yield,fallback,lazy) {
 	return (tink_core__$Future_Future_$Impl_$().default).async(function(cb) {
 		var iter = $getIterator(promises);
 		var next = null;
@@ -173,12 +174,13 @@ Promise_Impl_.iterate = function(promises,yield,$finally,lazy) {
 					switch(o._hx_index) {
 					case 0:
 						var v = o.data;
-						yield(v).handle(function(o1) {
+						$yield(v).handle(function(o1) {
 							switch(o1._hx_index) {
 							case 0:
-								switch(o1.data._hx_index) {
+								var _g = o1.data;
+								switch(_g._hx_index) {
 								case 0:
-									var ret = o1.data.v;
+									var ret = _g.v;
 									cb((tink_core_Outcome().default).Success(ret));
 									break;
 								case 1:
@@ -200,7 +202,7 @@ Promise_Impl_.iterate = function(promises,yield,$finally,lazy) {
 					}
 				});
 			} else {
-				$finally.handle(cb);
+				fallback.handle(cb);
 			}
 		};
 		next();
@@ -380,6 +382,12 @@ Promise_Impl_.lift = function(p) {
 Promise_Impl_.trigger = function() {
 	var this1 = new (tink_core_FutureTrigger().default)();
 	return this1;
+}
+Promise_Impl_.resolve = function(v) {
+	return new (tink_core__$Future_SyncFuture().default)(new (tink_core__$Lazy_LazyConst().default)((tink_core_Outcome().default).Success(v)));
+}
+Promise_Impl_.reject = function(e) {
+	return new (tink_core__$Future_SyncFuture().default)(new (tink_core__$Lazy_LazyConst().default)((tink_core_Outcome().default).Failure(e)));
 }
 Promise_Impl_.NULL = new (tink_core__$Future_SyncFuture().default)(new (tink_core__$Lazy_LazyConst().default)((tink_core_Outcome().default).Success(null)))
 Promise_Impl_.NOISE = new (tink_core__$Future_SyncFuture().default)(new (tink_core__$Lazy_LazyConst().default)((tink_core_Outcome().default).Success((tink_core_Noise().default).Noise)))

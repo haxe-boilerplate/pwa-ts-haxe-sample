@@ -62,11 +62,19 @@ var InputSource = function(name,target,worker,buf,offset) {
 			}
 		})).handle(function(step) {
 			switch(step._hx_index) {
-			case 1:case 2:
+			case 1:
+				var _g = step.e;
 				try {
 					target.close();
 				} catch( e4 ) {
 					var e5 = ((e4) instanceof (js__$Boot_HaxeError().default)) ? e4.val : e4;
+				}
+				break;
+			case 2:
+				try {
+					target.close();
+				} catch( e6 ) {
+					var e7 = ((e6) instanceof (js__$Boot_HaxeError().default)) ? e6.val : e6;
 				}
 				break;
 			default:

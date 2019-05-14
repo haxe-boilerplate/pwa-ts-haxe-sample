@@ -38,6 +38,7 @@ FormField_Impl_.getValue = function(this1) {
 		var v = this1.v;
 		return v;
 	case 1:
+		var _g1 = this1.handle;
 		throw new (js__$Boot_HaxeError().default)("expected plain value but received file");
 	}
 }
@@ -53,6 +54,7 @@ FormField_Impl_.toString = function(this1) {
 FormField_Impl_.getFile = function(this1) {
 	switch(this1._hx_index) {
 	case 0:
+		var _g = this1.v;
 		throw new (js__$Boot_HaxeError().default)("expected file but got plain value");
 	case 1:
 		var u = this1.handle;

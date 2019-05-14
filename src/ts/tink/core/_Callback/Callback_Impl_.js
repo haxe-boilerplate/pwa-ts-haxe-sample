@@ -39,7 +39,7 @@ Callback_Impl_.toFunction = function(this1) {
 	return this1;
 }
 Callback_Impl_.invoke = function(this1,data) {
-	if(Callback_Impl_.depth < 1000) {
+	if(Callback_Impl_.depth < 500) {
 		Callback_Impl_.depth++;
 		this1(data);
 		Callback_Impl_.depth--;
@@ -76,7 +76,7 @@ Callback_Impl_.defer = function(f) {
 	process.nextTick(f);
 }
 Callback_Impl_.depth = 0
-Callback_Impl_.MAX_DEPTH = 1000
+Callback_Impl_.MAX_DEPTH = 500
 
 // Export
 

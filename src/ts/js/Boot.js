@@ -82,15 +82,13 @@ Boot.__string_rec = function(o,s) {
 			}
 		}
 		if(((o) instanceof Array)) {
-			var l = o.length;
-			var i;
 			var str = "[";
 			s += "\t";
 			var _g3 = 0;
-			var _g11 = l;
+			var _g11 = o.length;
 			while(_g3 < _g11) {
-				var i1 = _g3++;
-				str += (i1 > 0 ? "," : "") + Boot.__string_rec(o[i1],s);
+				var i = _g3++;
+				str += (i > 0 ? "," : "") + Boot.__string_rec(o[i],s);
 			}
 			str += "]";
 			return str;
@@ -108,11 +106,11 @@ Boot.__string_rec = function(o,s) {
 				return s2;
 			}
 		}
-		var k = null;
 		var str1 = "{\n";
 		s += "\t";
 		var hasp = o.hasOwnProperty != null;
-		for( var k in o ) {
+		var k = null;
+		for( k in o ) {
 		if(hasp && !o.hasOwnProperty(k)) {
 			continue;
 		}

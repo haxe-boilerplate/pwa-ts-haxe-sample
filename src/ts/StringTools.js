@@ -33,7 +33,7 @@ StringTools.prototype.__class__ = StringTools.prototype.constructor = $hxClasses
 
 StringTools.startsWith = function(s,start) {
 	if(s.length >= start.length) {
-		return (HxOverrides().default).substr(s,0,start.length) == start;
+		return s.lastIndexOf(start,0) == 0;
 	} else {
 		return false;
 	}
@@ -42,7 +42,7 @@ StringTools.endsWith = function(s,end) {
 	var elen = end.length;
 	var slen = s.length;
 	if(slen >= elen) {
-		return (HxOverrides().default).substr(s,slen - elen,elen) == end;
+		return s.indexOf(end,slen - elen) == slen - elen;
 	} else {
 		return false;
 	}

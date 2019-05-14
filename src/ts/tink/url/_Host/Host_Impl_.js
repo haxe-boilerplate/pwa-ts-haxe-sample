@@ -53,6 +53,7 @@ Host_Impl_.get_name = function(this1) {
 			var v = _g[0];
 			return v.split(":")[0];
 		case 2:
+			var _g3 = _g[1];
 			var v1 = _g[0];
 			return v1 + "]";
 		default:
@@ -77,12 +78,13 @@ Host_Impl_.get_port = function(this1) {
 			}
 			break;
 		case 2:
+			var _g2 = _g[0];
 			var v1 = _g[1];
-			var _g2 = v1.split(":")[1];
-			if(_g2 == null) {
+			var _g3 = v1.split(":")[1];
+			if(_g3 == null) {
 				return null;
 			} else {
-				var p1 = _g2;
+				var p1 = _g3;
 				return (Std().default).parseInt(p1);
 			}
 			break;

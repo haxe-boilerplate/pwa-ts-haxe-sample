@@ -54,8 +54,8 @@ Response_Impl_.ofUrl = function(u) {
 	var this4 = new (tink_http__$Response_OutgoingResponseData().default)(this3,new (tink_streams_Single().default)(new (tink_core__$Lazy_LazyConst().default)((tink__$Chunk_Chunk_$Impl_$().default).EMPTY)));
 	return this4;
 }
-Response_Impl_.binary = function(code,contentType,bytes) {
-	return (tink_http__$Response_OutgoingResponse_$Impl_$().default).blob(code,(tink_chunk_ByteChunk().default).of(bytes),contentType);
+Response_Impl_.binary = function(code,contentType,bytes,headers) {
+	return (tink_http__$Response_OutgoingResponse_$Impl_$().default).blob(code,(tink_chunk_ByteChunk().default).of(bytes),contentType,headers);
 }
 Response_Impl_.empty = function(code) {
 	if(code == null) {
@@ -66,8 +66,8 @@ Response_Impl_.empty = function(code) {
 	var this3 = new (tink_http__$Response_OutgoingResponseData().default)(this2,new (tink_streams_Single().default)(new (tink_core__$Lazy_LazyConst().default)((tink__$Chunk_Chunk_$Impl_$().default).EMPTY)));
 	return this3;
 }
-Response_Impl_.textual = function(code,contentType,string) {
-	return Response_Impl_.binary(code,contentType,(haxe_io_Bytes().default).ofString(string));
+Response_Impl_.textual = function(code,contentType,string,headers) {
+	return Response_Impl_.binary(code,contentType,(haxe_io_Bytes().default).ofString(string),headers);
 }
 
 

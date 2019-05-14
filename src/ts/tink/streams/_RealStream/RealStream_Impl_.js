@@ -58,6 +58,7 @@ RealStream_Impl_.collect = function(this1) {
 	})).map(function(c) {
 		switch(c._hx_index) {
 		case 0:
+			var _g1 = c.rest;
 			throw new (js__$Boot_HaxeError().default)("unreachable");
 		case 2:
 			var e = c.error;

@@ -69,7 +69,7 @@ class ClassProcessor {
 					}
 					default:
 				}
-		default: //do nothing
+		default: //do nothings
 		}
 		switch(expr.t) {
 			case TFun(args, ret): 

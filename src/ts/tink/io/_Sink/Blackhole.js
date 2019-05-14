@@ -36,6 +36,7 @@ Blackhole.prototype = $extend((tink_io_SinkBase().default).prototype, {
 		})).map(function(o) {
 			switch(o._hx_index) {
 			case 0:
+				var _g1 = o.rest;
 				throw new (js__$Boot_HaxeError().default)("unreachable");
 			case 2:
 				var e = o.error;

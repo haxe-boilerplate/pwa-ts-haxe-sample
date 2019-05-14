@@ -78,11 +78,12 @@ OutputSink.prototype = $extend((tink_io_SinkBase().default).prototype, {
 						})).handle(function(o) {
 							switch(o._hx_index) {
 							case 0:
-								if(o.data == -1) {
+								var _g = o.data;
+								if(_g == -1) {
 									rest = (tink_chunk_ByteChunk().default).of(bytes).slice(pos,bytes.length);
 									cb((tink_streams_Handled().default).Finish);
 								} else {
-									var v = o.data;
+									var v = _g;
 									pos += v;
 									if(pos == bytes.length) {
 										cb((tink_streams_Handled().default).Resume);

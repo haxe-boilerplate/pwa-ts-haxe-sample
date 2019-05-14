@@ -158,10 +158,13 @@ ChunkCursor.prototype = {
 								_gthis.moveTo(_gthis.currentPos + delta);
 								if(options == null) {
 									_gthis.shift();
-								} else if(options.withoutPruning == null) {
-									_gthis.shift();
-								} else if(options.withoutPruning == false) {
-									_gthis.shift();
+								} else {
+									var _g2 = options.withoutPruning;
+									if(_g2 == null) {
+										_gthis.shift();
+									} else if(_g2 == false) {
+										_gthis.shift();
+									}
 								}
 								return (haxe_ds_Option().default).Some(before);
 							} else {
@@ -183,16 +186,16 @@ ChunkCursor.prototype = {
 			copy.moveTo(copy.currentPos + (b.to - (b.from + offset)));
 			return (haxe_ds_Option().default).None;
 		};
-		var _g2 = part(this.curPart,this.curOffset);
-		if(_g2._hx_index == 1) {
-			var _g3 = this.curPartIndex + 1;
+		var _g3 = part(this.curPart,this.curOffset);
+		if(_g3._hx_index == 1) {
+			var _g4 = this.curPartIndex + 1;
 			var _g11 = this.parts.length;
-			while(_g3 < _g11) {
-				var i1 = _g3++;
-				var _g4 = part(this.parts[i1],0);
-				switch(_g4._hx_index) {
+			while(_g4 < _g11) {
+				var i1 = _g4++;
+				var _g5 = part(this.parts[i1],0);
+				switch(_g5._hx_index) {
 				case 0:
-					var v = _g4.v;
+					var v = _g5.v;
 					return (haxe_ds_Option().default).Some(v);
 				case 1:
 					break;
@@ -200,7 +203,7 @@ ChunkCursor.prototype = {
 			}
 			return (haxe_ds_Option().default).None;
 		} else {
-			var v1 = _g2;
+			var v1 = _g3;
 			return v1;
 		}
 	},

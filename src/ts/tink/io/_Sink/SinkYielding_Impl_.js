@@ -46,9 +46,14 @@ SinkYielding_Impl_.end = function(this1) {
 	} else {
 		var ret = this1.consume((tink_io__$Source_Source_$Impl_$().default).EMPTY,{ end : true}).map(function(r) {
 			switch(r._hx_index) {
-			case 0:case 1:
+			case 0:
+				return (tink_core_Outcome().default).Success(true);
+			case 1:
+				var _g3 = r.rest;
+				var _g2 = r.result;
 				return (tink_core_Outcome().default).Success(true);
 			case 2:
+				var _g1 = r.rest;
 				var e = r.e;
 				return (tink_core_Outcome().default).Failure(e);
 			}
@@ -82,11 +87,14 @@ SinkYielding_Impl_.ofOutput = function(name,target,options) {
 	var tmp;
 	if(options == null) {
 		tmp = (tink_io__$Worker_Worker_$Impl_$().default).get();
-	} else if(options.worker == null) {
-		tmp = (tink_io__$Worker_Worker_$Impl_$().default).get();
 	} else {
-		var w = options.worker;
-		tmp = w;
+		var _g = options.worker;
+		if(_g == null) {
+			tmp = (tink_io__$Worker_Worker_$Impl_$().default).get();
+		} else {
+			var w = _g;
+			tmp = w;
+		}
 	}
 	return new (tink_io_std_OutputSink().default)(name,target,tmp);
 }

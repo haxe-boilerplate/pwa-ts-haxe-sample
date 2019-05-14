@@ -50,8 +50,11 @@ UploadedFile_Impl_.ofBlob = function(name,type,data) {
 			case 0:
 				return (tink_core_Outcome().default).Success((tink_core_Noise().default).Noise);
 			case 1:
+				var _g3 = r.rest;
+				var _g2 = r.result;
 				return (tink_core_Outcome().default).Failure(new (tink_core_TypedError().default)(null,"File $path closed unexpectedly",{ fileName : "tink/http/StructuredBody.hx", lineNumber : 37, className : "tink.http._StructuredBody.UploadedFile_Impl_", methodName : "ofBlob"}));
 			case 2:
+				var _g1 = r.rest;
 				var e = r.e;
 				return (tink_core_Outcome().default).Failure(e);
 			}

@@ -116,6 +116,7 @@ StreamBase.prototype = {
 			})).handle(function(c) {
 				switch(c._hx_index) {
 				case 0:
+					var _g3 = c.rest;
 					throw new (js__$Boot_HaxeError().default)("assert");
 				case 1:
 					var rest = c.at;

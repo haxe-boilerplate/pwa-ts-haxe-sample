@@ -39,8 +39,11 @@ PipeResultTools.toOutcome = function(result) {
 	case 0:
 		return (tink_core_Outcome().default).Success(true);
 	case 1:
+		var _g4 = result.rest;
+		var _g3 = result.result;
 		return (tink_core_Outcome().default).Success(false);
 	case 2:
+		var _g1 = result.rest;
 		var e = result.e;
 		return (tink_core_Outcome().default).Failure(e);
 	case 3:

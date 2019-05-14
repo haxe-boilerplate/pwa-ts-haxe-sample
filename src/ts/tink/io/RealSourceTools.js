@@ -64,6 +64,7 @@ RealSourceTools.parse = function(s,p) {
 			var this1 = new (tink_core_MPair().default)(data,rest);
 			return (tink_core_Outcome().default).Success(this1);
 		case 1:
+			var _g1 = r.rest;
 			var e = r.e;
 			return (tink_core_Outcome().default).Failure(e);
 		case 2:
@@ -85,8 +86,10 @@ RealSourceTools.split = function(src,delim) {
 			return src;
 		}
 	})))), delimiter : (tink_core__$Promise_Promise_$Impl_$().default).next(s,function(p1) {
-		switch(p1.a._hx_index) {
+		var _g1 = p1.a;
+		switch(_g1._hx_index) {
 		case 0:
+			var _g11 = _g1.v;
 			return new (tink_core__$Future_SyncFuture().default)(new (tink_core__$Lazy_LazyConst().default)((tink_core_Outcome().default).Success(delim)));
 		case 1:
 			return new (tink_core__$Future_SyncFuture().default)(new (tink_core__$Lazy_LazyConst().default)((tink_core_Outcome().default).Failure(new (tink_core_TypedError().default)(404,"Delimiter not found",{ fileName : "tink/io/Source.hx", lineNumber : 177, className : "tink.io.RealSourceTools", methodName : "split"}))));

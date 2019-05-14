@@ -25,10 +25,11 @@ var NodejsSource = function(target) {
 			var tmp;
 			switch(o._hx_index) {
 			case 0:
-				if(o.data == null) {
+				var _g = o.data;
+				if(_g == null) {
 					tmp = (tink_streams_Step().default).End;
 				} else {
-					var chunk = o.data;
+					var chunk = _g;
 					tmp = (tink_streams_Step().default).Link(chunk,new NodejsSource(target));
 				}
 				break;

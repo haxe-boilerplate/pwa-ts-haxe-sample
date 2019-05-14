@@ -69,28 +69,36 @@ Url_Impl_.resolve = function(this1,that) {
 }
 Url_Impl_.makePayload = function(parts) {
 	var payload = "";
-	if(parts.auth == null) {
-		if(parts.host != null) {
-			var host = parts.host;
+	var _g7 = parts.scheme;
+	var _g6 = parts.query;
+	var _g5 = parts.payload;
+	var _g4 = parts.path;
+	var _g3 = parts.hosts;
+	var _g2 = parts.host;
+	var _g1 = parts.hash;
+	var _g = parts.auth;
+	if(_g == null) {
+		if(_g2 != null) {
+			var host = _g2;
 			payload += "//" + host;
 		}
-	} else if(parts.host == null) {
-		var auth = parts.auth;
+	} else if(_g2 == null) {
+		var auth = _g;
 		payload += "//" + (auth == null ? "" : "" + auth + "@");
 	} else {
-		var auth1 = parts.auth;
-		var host1 = parts.host;
+		var auth1 = _g;
+		var host1 = _g2;
 		payload += "//" + (auth1 == null ? "" : "" + auth1 + "@") + host1;
 	}
 	payload += parts.path;
-	var _g = parts.query;
-	if(_g != null) {
-		var v = _g;
+	var _g8 = parts.query;
+	if(_g8 != null) {
+		var v = _g8;
 		payload += "?" + v;
 	}
-	var _g1 = parts.hash;
-	if(_g1 != null) {
-		var v1 = _g1;
+	var _g9 = parts.hash;
+	if(_g9 != null) {
+		var v1 = _g9;
 		payload += "#" + v1;
 	}
 	parts.payload = payload.toString();

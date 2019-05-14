@@ -58,6 +58,7 @@ OutcomeTools.toOption = function(outcome) {
 		var data = outcome.data;
 		return (haxe_ds_Option().default).Some(data);
 	case 1:
+		var _g1 = outcome.failure;
 		return (haxe_ds_Option().default).None;
 	}
 }
@@ -76,6 +77,7 @@ OutcomeTools.orNull = function(outcome) {
 		var data = outcome.data;
 		return data;
 	case 1:
+		var _g1 = outcome.failure;
 		return null;
 	}
 }
@@ -85,14 +87,17 @@ OutcomeTools.orUse = function(outcome,fallback) {
 		var data = outcome.data;
 		return data;
 	case 1:
+		var _g1 = outcome.failure;
 		return fallback.get();
 	}
 }
 OutcomeTools.orTry = function(outcome,fallback) {
 	switch(outcome._hx_index) {
 	case 0:
+		var _g = outcome.data;
 		return outcome;
 	case 1:
+		var _g1 = outcome.failure;
 		return fallback.get();
 	}
 }
@@ -102,6 +107,7 @@ OutcomeTools.equals = function(outcome,to) {
 		var data = outcome.data;
 		return data == to;
 	case 1:
+		var _g1 = outcome.failure;
 		return false;
 	}
 }
@@ -117,6 +123,7 @@ OutcomeTools.map = function(outcome,transform) {
 }
 OutcomeTools.isSuccess = function(outcome) {
 	if(outcome._hx_index == 0) {
+		var _g = outcome.data;
 		return true;
 	} else {
 		return false;
@@ -145,12 +152,13 @@ OutcomeTools.attempt = function(f,report) {
 OutcomeTools.flatten = function(o) {
 	switch(o._hx_index) {
 	case 0:
-		switch(o.data._hx_index) {
+		var _g = o.data;
+		switch(_g._hx_index) {
 		case 0:
-			var d = o.data.data;
+			var d = _g.data;
 			return (tink_core_Outcome().default).Success(d);
 		case 1:
-			var f = o.data.failure;
+			var f = _g.failure;
 			return (tink_core_Outcome().default).Failure(f);
 		}
 		break;
