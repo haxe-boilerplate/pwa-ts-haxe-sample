@@ -11,6 +11,9 @@ import { isObject } from 'util';
 import * as http from 'http';
 import { Server } from 'net';
 import SuperServerComponent from './SuperServerComponent';
+import tm from '../lib/tink-middleware';
+import t from './TinkAPI';
+
 
 const superServerComponent = new SuperServerComponent();
 superServerComponent.saySomething('Hello from Haxe running on nodejs from a js file compiled by tsc!');
@@ -21,11 +24,14 @@ const app = express();
 app.set('view engine', 'ejs');
 
 app.use('/assets', express.static(path.join(__dirname, '..', '..', '..', 'assets')));
+
+app.use('/tink_api', (req, res, next) => {
+  t.main(req, res);
+});
+
 app.use(apiRouter());
 app.use(staticsRouter());
 app.use(pagesRouter());
-app.use(cors());
-
 const httpServer = http.createServer(app);
 
 httpServer.listen(config.SERVER_PORT, () => {

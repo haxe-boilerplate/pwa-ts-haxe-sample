@@ -13,14 +13,16 @@ var $hxEnums = require("./../hxEnums_stub").default;
 var $import = require("./../import_stub").default;
 function tink_http_containers_NodeContainer() {return require("./../tink/http/containers/NodeContainer");}
 function tink_http_containers__$NodeContainer_ServerKindBase() {return require("./../tink/http/containers/_NodeContainer/ServerKindBase");}
+function tink_http_IncomingRequestHeader() {return require("./../tink/http/IncomingRequestHeader");}
+function tink_http_IncomingRequest() {return require("./../tink/http/IncomingRequest");}
+function tink_http_IncomingRequestBody() {return require("./../tink/http/IncomingRequestBody");}
+function tink_io_nodejs_NodejsSource() {return require("./../tink/io/nodejs/NodejsSource");}
 function tink_web_routing_Router0() {return require("./../tink/web/routing/Router0");}
 function server_Root() {return require("./../server/Root");}
-function tink_http_SimpleHandler() {return require("./../tink/http/SimpleHandler");}
 function tink_web_routing_Context() {return require("./../tink/web/routing/Context");}
-function tink_core__$Promise_Recover_$Impl_$() {return require("./../tink/core/_Promise/Recover_Impl_");}
-function tink_http__$Response_OutgoingResponse_$Impl_$() {return require("./../tink/http/_Response/OutgoingResponse_Impl_");}
-function tink_core__$Future_SyncFuture() {return require("./../tink/core/_Future/SyncFuture");}
-function tink_core__$Lazy_LazyConst() {return require("./../tink/core/_Lazy/LazyConst");}
+function HxOverrides() {return require("./../HxOverrides");}
+function tink_io__$Source_Source_$Impl_$() {return require("./../tink/io/_Source/Source_Impl_");}
+function tink_io_nodejs_NodejsSink() {return require("./../tink/io/nodejs/NodejsSink");}
 
 // Constructor
 
@@ -40,25 +42,38 @@ TinkAPI.prototype.__class__ = TinkAPI.prototype.constructor = $hxClasses["server
 
 // Statics
 
-TinkAPI.main = function() {
+TinkAPI.main = function(req,res,next) {
 	var container = new (tink_http_containers_NodeContainer().default)((tink_http_containers__$NodeContainer_ServerKindBase().default).Port(8080));
+	var req1 = req.socket.remoteAddress;
+	var request = (tink_http_IncomingRequestHeader().default).fromIncomingMessage(req);
+	var options = null;
+	if(options == null) {
+		options = { };
+	}
+	var request1 = new (tink_http_IncomingRequest().default)(req1,request,(tink_http_IncomingRequestBody().default).Plain((tink_io_nodejs_NodejsSource().default).wrap("Incoming HTTP message from " + req.socket.remoteAddress,req,options.chunkSize,options.onEnd)));
 	var router = new (tink_web_routing_Router0().default)(new (server_Root().default)());
-	container.run(new (tink_http_SimpleHandler().default)(function(req) {
-		var this1 = (tink_web_routing_Context().default).ofRequest(req);
-		var this2 = router.route(this1);
-		var f = (tink_core__$Promise_Recover_$Impl_$().default).ofSync((tink_http__$Response_OutgoingResponse_$Impl_$().default).reportError);
-		var ret = this2.flatMap(function(o) {
-			switch(o._hx_index) {
-			case 0:
-				var d = o.data;
-				return new (tink_core__$Future_SyncFuture().default)(new (tink_core__$Lazy_LazyConst().default)(d));
-			case 1:
-				var e = o.failure;
-				return f(e);
+	return router.route((tink_web_routing_Context().default).ofRequest(request1)).handle(function(out) {
+		switch(out._hx_index) {
+		case 0:
+			var data = out.data;
+			var data1 = data.header.statusCode;
+			var data2 = data.header.reason;
+			var _g = [];
+			var h = (HxOverrides().default).iter(data.header.fields);
+			while(h.hasNext()) {
+				var h1 = h.next();
+				_g.push([h1.name,h1.value]);
 			}
-		});
-		return ret.gather();
-	}));
+			res.writeHead(data1,data2,_g);
+			(tink_io__$Source_Source_$Impl_$().default).pipeTo(data.body,(tink_io_nodejs_NodejsSink().default).wrap("Outgoing HTTP response to " + req.socket.remoteAddress,res)).handle(function(x) {
+				res.end();
+			});
+			break;
+		case 1:
+			var data3 = out.failure;
+			break;
+		}
+	});
 }
 
 

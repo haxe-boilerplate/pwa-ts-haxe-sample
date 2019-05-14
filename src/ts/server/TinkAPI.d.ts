@@ -8,16 +8,18 @@ import tink_core__$Promise_Recover_$Impl_$ from "./../tink/core/_Promise/Recover
 import tink_http__$Response_OutgoingResponse_$Impl_$ from "./../tink/http/_Response/OutgoingResponse_Impl_";
 import tink_core__$Future_SyncFuture from "./../tink/core/_Future/SyncFuture";
 import tink_core__$Lazy_LazyConst from "./../tink/core/_Lazy/LazyConst";
+import { AnyARecord } from "dns";
+
+
+
+
 
 declare namespace server {
-
 export class TinkAPI {
-
-	static main():any;
-
-
+	static main(req, res): any;
+	private constructor();
+}
 }
 
-}
 
 export default server.TinkAPI;

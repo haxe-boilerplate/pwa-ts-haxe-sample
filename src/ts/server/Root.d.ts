@@ -1,15 +1,15 @@
 
 
+
+
+
+
 declare namespace server {
-
 export class Root {
-
 	constructor();
-	hello(name?:any):any;
-
-
+	hello(name: string): string;
+}
 }
 
-}
 
 export default server.Root;

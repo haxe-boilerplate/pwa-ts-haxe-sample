@@ -32,25 +32,37 @@ Router0.__name__ = "tink.web.routing.Router0";
 Router0.prototype = {
 	route: function(ctx) {
 		var l = ctx.parts.length - ctx.depth;
-		var _g = l > 1;
-		var _g2 = ctx.part(0);
+		var _g = l > 2;
+		var _g1 = l > 1;
+		var _g3 = ctx.part(1);
+		var _g4 = ctx.part(0);
 		if(ctx.request.header.method == "GET") {
 			switch(l > 0) {
 			case false:
 				return (tink_core__$Promise_Promise_$Impl_$().default).ofSpecific(this.hello(ctx,null));
 			case true:
-				if(_g == false) {
-					var name = _g2;
-					return (tink_core__$Promise_Promise_$Impl_$().default).ofSpecific(this.hello(ctx,name));
+				if(_g4 == "doood") {
+					if(_g1 == true) {
+						if(_g == false) {
+							var name = _g3;
+							return (tink_core__$Promise_Promise_$Impl_$().default).ofSpecific(this.hello(ctx,name));
+						} else {
+							var this1 = ctx.request.header.url;
+							return new (tink_core__$Future_SyncFuture().default)(new (tink_core__$Lazy_LazyConst().default)((tink_core_Outcome().default).Failure(new (tink_core_TypedError().default)(404,"Not Found: [" + ctx.request.header.method + "] " + (this1.query == null ? this1.path : this1.path + "?" + this1.query),{ fileName : "src/hx/server/TinkAPI.hx", lineNumber : 30, className : "tink.web.routing.Router0", methodName : "route"}))));
+						}
+					} else {
+						var this2 = ctx.request.header.url;
+						return new (tink_core__$Future_SyncFuture().default)(new (tink_core__$Lazy_LazyConst().default)((tink_core_Outcome().default).Failure(new (tink_core_TypedError().default)(404,"Not Found: [" + ctx.request.header.method + "] " + (this2.query == null ? this2.path : this2.path + "?" + this2.query),{ fileName : "src/hx/server/TinkAPI.hx", lineNumber : 30, className : "tink.web.routing.Router0", methodName : "route"}))));
+					}
 				} else {
-					var this1 = ctx.request.header.url;
-					return new (tink_core__$Future_SyncFuture().default)(new (tink_core__$Lazy_LazyConst().default)((tink_core_Outcome().default).Failure(new (tink_core_TypedError().default)(404,"Not Found: [" + ctx.request.header.method + "] " + (this1.query == null ? this1.path : this1.path + "?" + this1.query),{ fileName : "src/hx/server/TinkAPI.hx", lineNumber : 20, className : "tink.web.routing.Router0", methodName : "route"}))));
+					var this3 = ctx.request.header.url;
+					return new (tink_core__$Future_SyncFuture().default)(new (tink_core__$Lazy_LazyConst().default)((tink_core_Outcome().default).Failure(new (tink_core_TypedError().default)(404,"Not Found: [" + ctx.request.header.method + "] " + (this3.query == null ? this3.path : this3.path + "?" + this3.query),{ fileName : "src/hx/server/TinkAPI.hx", lineNumber : 30, className : "tink.web.routing.Router0", methodName : "route"}))));
 				}
 				break;
 			}
 		} else {
-			var this2 = ctx.request.header.url;
-			return new (tink_core__$Future_SyncFuture().default)(new (tink_core__$Lazy_LazyConst().default)((tink_core_Outcome().default).Failure(new (tink_core_TypedError().default)(404,"Not Found: [" + ctx.request.header.method + "] " + (this2.query == null ? this2.path : this2.path + "?" + this2.query),{ fileName : "src/hx/server/TinkAPI.hx", lineNumber : 20, className : "tink.web.routing.Router0", methodName : "route"}))));
+			var this4 = ctx.request.header.url;
+			return new (tink_core__$Future_SyncFuture().default)(new (tink_core__$Lazy_LazyConst().default)((tink_core_Outcome().default).Failure(new (tink_core_TypedError().default)(404,"Not Found: [" + ctx.request.header.method + "] " + (this4.query == null ? this4.path : this4.path + "?" + this4.query),{ fileName : "src/hx/server/TinkAPI.hx", lineNumber : 30, className : "tink.web.routing.Router0", methodName : "route"}))));
 		}
 	},
 	hello: function(ctx,name) {

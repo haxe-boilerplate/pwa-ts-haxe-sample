@@ -15,7 +15,7 @@
       "type": "node",
       "request": "launch",
       "name": "Server",
-      "program": "${workspaceFolder}/src/server/main.ts",
+      "program": "${workspaceFolder}/src/ts/server/main.ts",
       "preLaunchTask": "npm: build-server",
       "outFiles": [
         "${workspaceFolder}/dist/**/*.js"
