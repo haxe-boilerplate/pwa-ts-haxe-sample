@@ -15,7 +15,6 @@ function tink_url__$Host_Host_$Impl_$() {return require("./../tink/url/_Host/Hos
 function tink_web_proxy_Remote0() {return require("./../tink/web/proxy/Remote0");}
 function tink_http_clients_NodeClient() {return require("./../tink/http/clients/NodeClient");}
 function tink_web_proxy__$Remote_RemoteEndpoint_$Impl_$() {return require("./../tink/web/proxy/_Remote/RemoteEndpoint_Impl_");}
-function js__$Boot_HaxeError() {return require("./../js/_Boot/HaxeError");}
 
 // Constructor
 
@@ -37,16 +36,7 @@ Client.prototype.__class__ = Client.prototype.constructor = $hxClasses["client.C
 
 Client.call = function() {
 	var remote = new (tink_web_proxy_Remote0().default)(new (tink_http_clients_NodeClient().default)(),(tink_web_proxy__$Remote_RemoteEndpoint_$Impl_$().default)._new((tink_url__$Host_Host_$Impl_$().default)._new("localhost",3000)));
-	return remote.json().handle(function(o) {
-		switch(o._hx_index) {
-		case 0:
-			var result = o.data;
-			return result;
-		case 1:
-			var e = o.failure;
-			throw new (js__$Boot_HaxeError().default)("Foo");
-		}
-	});
+	return remote.json();
 }
 Client.HOST = (tink_url__$Host_Host_$Impl_$().default)._new("localhost")
 
