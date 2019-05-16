@@ -5,7 +5,8 @@
 * Some edge-cases don't work well - i.e hxtsdgen doesn't seem to play well with the module approach from hxgenjs when using third-party libs
 with complex macros, such as tink.
 * Current status is: It could be used as an example of TS<>Haxe interoperability or a base for a better boilerplate, but since hxdtsgen doesn't
-work well in all cases, the benefit of this boilerplate is limited.
+work well in all cases. It's still a viable alternative for more natural Haxe<>TS interoperability if TS type info from Haxe is not required or
+agumented or written manually (see the @:tsextern tag to selectively enable/disable generation the d.ts for single classes at a time).
 
 
 # FAST FullStack TS + Haxe experiment
