@@ -1,3 +1,13 @@
+## Learning experiment. Not suitable for production use.
+
+* Uses a modified version of hxgenjs that incorporates hxtsdgen.
+* The introduction of hxgenjs provides more flexibility but adds a lot of complexity;
+* Some edge-cases don't work well - i.e hxtsdgen doesn't seem to play well with the module approach from hxgenjs when using third-party libs
+with complex macros, such as tink.
+* Current status is: It could be used as an example of TS<>Haxe interoperability or a base for a better boilerplate, but since hxdtsgen doesn't
+work well in all cases, the benefit of this boilerplate is limited.
+
+
 # FAST FullStack TS + Haxe experiment
 
 This is an ongoing experiment. At the time of this writing, the actual app is a sample/exercise websocket app, so not much to see there in
